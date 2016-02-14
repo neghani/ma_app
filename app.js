@@ -2,7 +2,8 @@ var express = require('express');
 var app = express();
 var mw = require('./middleware');
 var middleware = mw();
-
+var port = process.env.PORT || 3000
+	
 app.use(middleware.logger)
 
 app.get('/about',middleware.requireAuthentication,function(req,res){
@@ -11,7 +12,7 @@ app.get('/about',middleware.requireAuthentication,function(req,res){
 })
 
 app.use(express.static(__dirname+'/public'))
-app.listen(3000,function (){
+app.listen(port,function (){
 
 console.log(" Server Started")
 })
